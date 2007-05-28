@@ -1,6 +1,6 @@
 Summary: A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name: ccid
-Version: 1.2.1
+Version: 1.3.0
 Release: %mkrel 1
 License: LGPL
 Group: System/Libraries
@@ -40,6 +40,9 @@ mv -f %{buildroot}%{_sysconfdir}/reader.conf %{buildroot}%{_sysconfdir}/reader.c
 # udev
 install -m 0644 -D src/pcscd_ccid.rules %{buildroot}%{_sysconfdir}/udev/rules.d/70-pcscd_ccid.rules
 
+rm -rf %{buildroot}%{_docdir}/*
+cp -f src/towitoko/README README.towitoko
+
 %post
 %{_sbindir}/update-reader.conf
 
@@ -54,10 +57,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc AUTHORS INSTALL README COPYING
-%doc readers
+%doc readers contrib/Kobil_mIDentity_switch/README_Kobil_mIDentity_switch.txt
+%doc README.towitoko
 %config(noreplace) %{_sysconfdir}/reader.conf.d/*.conf
 %config(noreplace) %{_sysconfdir}/udev/rules.d/70-pcscd_ccid.rules
 %{_libdir}/pcsc/drivers/ifd-ccid.bundle
 %{_libdir}/pcsc/drivers/serial
-
+%{_bindir}/RSA_SecurID_getpasswd
+%{_sbindir}/Kobil_mIDentity_switch
+%{_mandir}/man1/RSA_SecurID_getpasswd.1*
+%{_mandir}/man8/Kobil_mIDentity_switch.8*
 
