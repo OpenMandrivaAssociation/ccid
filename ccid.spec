@@ -13,6 +13,7 @@ BuildRequires: libusb-devel
 # update-reader.conf is called in %%post
 Requires(post,postun): pcsc-lite
 Requires: pcsc-lite
+BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
