@@ -1,7 +1,7 @@
 Summary: A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name: ccid
 Version: 1.3.0
-Release: %mkrel 1
+Release: %mkrel 2
 License: LGPL
 Group: System/Libraries
 Source0: https://alioth.debian.org/download.php/1474/ccid-%{version}.tar.gz
