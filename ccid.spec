@@ -1,8 +1,9 @@
 Summary: A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name: ccid
-Version: 1.3.0
-Release: %mkrel 2
-License: LGPL
+Version: 1.3.5
+Release: %mkrel 1
+# RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
+License: GPLv2+ and LGPLv2+
 Group: System/Libraries
 Source0: https://alioth.debian.org/download.php/1474/ccid-%{version}.tar.gz
 Source1: https://alioth.debian.org/download.php/1475/ccid-%{version}.tar.gz.asc
