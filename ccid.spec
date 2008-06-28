@@ -1,36 +1,48 @@
-Summary: A generic USB CCID (Chip/Smart Card Interface Devices) driver
-Name: ccid
-Version: 1.3.6
-Release: %mkrel 1
+Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
+Name:		ccid
+Version:	1.3.8
+Release:	%mkrel 1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
-License: GPLv2+ and LGPLv2+
-Group: System/Libraries
-Source0: https://alioth.debian.org/download.php/1474/ccid-%{version}.tar.gz
-Source1: https://alioth.debian.org/download.php/1475/ccid-%{version}.tar.gz.asc
-URL: http://pcsclite.alioth.debian.org/
-BuildRequires: pkgconfig >= 0.9.0
-BuildRequires: libpcsclite-devel >= 1.3.3
-BuildRequires: libusb-devel
+License:	GPLv2+ and LGPLv2+
+Group:		System/Libraries
+URL:		http://pcsclite.alioth.debian.org/
+Source0:	https://alioth.debian.org/download.php/1474/ccid-%{version}.tar.bz2
+Source1:	https://alioth.debian.org/download.php/1475/ccid-%{version}.tar.bz2.asc
+Patch0:		ccid-libtool_fixes.diff
+BuildRequires:	flex
+BuildRequires:	libpcsclite-devel >= 1.3.3
+BuildRequires:	libusb-devel
+BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	libtool
 # update-reader.conf is called in %%post
-Requires(post,postun): pcsc-lite
-Requires: pcsc-lite
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(id -u -n)
+Requires(post): pcsc-lite
+Requires(postun): pcsc-lite
+Requires:	pcsc-lite
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
+
 %setup -q
+%patch0 -p0
 
 %build
-%configure2_5x --enable-twinserial --enable-udev
+autoreconf -fis
+
+%configure2_5x \
+    --enable-twinserial \
+    --enable-udev
 
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+
 %makeinstall_std
+
 # serial driver is installed separately
 %makeinstall_std -C src install_ccidtwin
 
@@ -49,11 +61,11 @@ cp -f src/towitoko/README README.towitoko
 
 %postun
 if [ "$1" = "0" ]; then
-	%{_sbindir}/update-reader.conf
+    %{_sbindir}/update-reader.conf
 fi
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -68,4 +80,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/Kobil_mIDentity_switch
 %{_mandir}/man1/RSA_SecurID_getpasswd.1*
 %{_mandir}/man8/Kobil_mIDentity_switch.8*
-
