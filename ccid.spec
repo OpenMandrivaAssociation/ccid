@@ -1,6 +1,6 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
-Version:	1.3.8svn3179
+Version:	1.3.9
 Release:	%mkrel 1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
@@ -14,7 +14,7 @@ URL:		http://pcsclite.alioth.debian.org/
 # cd Drivers
 # svn co svn://svn.debian.org/pcsclite/trunk/Drivers/ccid
 Source0:	https://alioth.debian.org/download.php/1474/ccid-%{version}.tar.bz2
-#Source1:	https://alioth.debian.org/download.php/1475/ccid-%{version}.tar.bz2.asc
+Source1:	https://alioth.debian.org/download.php/1475/ccid-%{version}.tar.bz2.asc
 Patch0:		ccid-libtool_fixes.diff
 BuildRequires:	flex
 BuildRequires:	libpcsclite-devel >= 1.3.3
@@ -33,9 +33,8 @@ driver.
 
 %prep
 
-%setup -q -n ccid/Drivers/ccid
-%patch0 -p0
-find -type d -name ".svn" | xargs rm -rf
+%setup -q 
+%patch0 -p1
 
 %build
 autoreconf -fis
