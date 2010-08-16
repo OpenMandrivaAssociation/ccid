@@ -1,6 +1,6 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
-Version:	1.3.11
+Version:	1.4.0
 Release:	%mkrel 1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
@@ -17,7 +17,7 @@ Source0:	https://alioth.debian.org/download.php/1474/ccid-%{version}.tar.bz2
 Source1:	https://alioth.debian.org/download.php/1475/ccid-%{version}.tar.bz2.asc
 Patch0:		ccid-libtool_fixes.diff
 BuildRequires:	flex
-BuildRequires:	libpcsclite-devel >= 1.3.3
+BuildRequires:	libpcsclite-devel >= 1.6.2
 BuildRequires:	libusb-devel
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	libtool
@@ -34,7 +34,7 @@ driver.
 %prep
 
 %setup -q 
-%patch0 -p1
+%patch0 -p0
 
 %build
 autoreconf -fis
@@ -54,8 +54,7 @@ rm -rf %{buildroot}
 %makeinstall_std -C src install_ccidtwin
 
 # conf file should be placed inside reader.conf.d
-mkdir -p %{buildroot}%{_sysconfdir}/reader.conf.d
-mv -f %{buildroot}%{_sysconfdir}/reader.conf %{buildroot}%{_sysconfdir}/reader.conf.d/GemPCTwin-serial.conf
+mv -f %{buildroot}%{_sysconfdir}/reader.conf.d/libccidtwin %{buildroot}%{_sysconfdir}/reader.conf.d/GemPCTwin-serial.conf
 
 # udev
 install -m 0644 -D src/pcscd_ccid.rules %{buildroot}%{_sysconfdir}/udev/rules.d/70-pcscd_ccid.rules
