@@ -1,7 +1,7 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
 Version:	1.4.1
-Release:	%mkrel 1
+Release:	1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
@@ -25,7 +25,6 @@ BuildRequires:	libtool
 Requires(post): pcsc-lite
 Requires(postun): pcsc-lite
 Requires:	pcsc-lite
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
@@ -46,8 +45,6 @@ autoreconf -fis
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
 # serial driver is installed separately
@@ -71,11 +68,7 @@ if [ "$1" = "0" ]; then
     %{_sbindir}/update-reader.conf
 fi
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc AUTHORS INSTALL README COPYING
 %doc readers contrib/Kobil_mIDentity_switch/README_Kobil_mIDentity_switch.txt
 %doc README.towitoko
