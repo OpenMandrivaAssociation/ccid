@@ -31,13 +31,11 @@ This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
-
 %setup -q 
 %patch0 -p0
-
-%build
 autoreconf -fis
 
+%build
 %configure2_5x \
     --enable-twinserial \
     --enable-udev
