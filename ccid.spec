@@ -5,7 +5,7 @@ Release:	1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
-URL:		http://pcsclite.alioth.debian.org/
+Url:		http://pcsclite.alioth.debian.org/
 # ccid svn contains symlinks to files pcsc svn. To create a working
 # source tarball from svn:
 # mkdir -p ccid/Drivers
@@ -13,17 +13,15 @@ URL:		http://pcsclite.alioth.debian.org/
 # svn co svn://svn.debian.org/pcsclite/trunk/PCSC
 # cd Drivers
 # svn co svn://svn.debian.org/pcsclite/trunk/Drivers/ccid
-Source0:	https://alioth.debian.org/download.php/1474/ccid-%{version}.tar.bz2
-Source1:	https://alioth.debian.org/download.php/1475/ccid-%{version}.tar.bz2.asc
+Source0:	https://alioth.debian.org/download.php/1474/%{name}-%{version}.tar.bz2
+Source1:	https://alioth.debian.org/download.php/1475/%{name}-%{version}.tar.bz2.asc
 Patch0:		ccid-libtool_fixes.diff
+
 BuildRequires:	flex
-BuildRequires:	libpcsclite-devel >= 1.6.5
-BuildRequires:	libusb-devel
-BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	libtool
-# update-reader.conf is called in %%post
-Requires(post): pcsc-lite
-Requires(postun): pcsc-lite
+BuildRequires:	pkgconfig(libpcsclite)
+BuildRequires:	pkgconfig(libusb-1.0)
+Requires(post,postun): pcsc-lite
 Requires:	pcsc-lite
 
 %description
@@ -32,13 +30,13 @@ driver.
 
 %prep
 %setup -q 
-%patch0 -p1
+%apply_patches
 
 %build
 autoreconf -fis
 %configure2_5x \
-    --enable-twinserial \
-    --enable-udev
+	--enable-twinserial \
+	--enable-udev
 
 %make
 
@@ -78,3 +76,4 @@ fi
 #%{_sbindir}/Kobil_mIDentity_switch
 #%{_mandir}/man1/RSA_SecurID_getpasswd.1*
 #%{_mandir}/man8/Kobil_mIDentity_switch.8*
+
