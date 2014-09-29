@@ -1,7 +1,3 @@
-removed_sources:
-  ccid-1.4.8.tar.bz2: 5506e3471e4893fe9b3fbb83d4d42fb77a641a7a
-  ccid-1.4.9.tar.bz2: da28de874903c221c10e06ca6af26e46b871d2a0
 sources:
-  ccid-1.4.11.tar.bz2: 599476e031da2d0b85366a3d2b484560ac789151
-  ccid-1.4.11.tar.bz2.asc: 5335d597ae69dbafb49b39c6cce1bbc4129549c6
-  ccid-1.4.9.tar.bz2.asc: 1446c1dad10850582412c5069d240e8ee9bfc82b
+  ccid-1.4.18.tar.bz2: e739fe13c6d38f503d142dd1c4f0eadacc603284
+  ccid-1.4.18.tar.bz2.asc: 7804760f097647bed3157ec51f79974c08519773
