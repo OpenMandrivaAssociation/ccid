@@ -1,7 +1,7 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
 Version:	1.4.24
-Release:	2
+Release:	3
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
@@ -21,7 +21,6 @@ BuildRequires:	flex
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(libpcsclite)
 BuildRequires:	pkgconfig(libusb-1.0)
-Requires(post,postun):	pcsc-lite
 Requires:	pcsc-lite
 
 %description
@@ -55,14 +54,6 @@ install -m 0644 -D src/92_pcscd_ccid.rules %{buildroot}/lib/udev/rules.d/92_pcsc
 rm -rf %{buildroot}%{_docdir}/*
 rm -f readers/Makefile*
 cp -f src/towitoko/README README.towitoko
-
-%post
-%{_sbindir}/update-reader.conf
-
-%postun
-if [ "$1" = "0" ]; then
-    %{_sbindir}/update-reader.conf
-fi
 
 %files
 %doc AUTHORS INSTALL README COPYING
