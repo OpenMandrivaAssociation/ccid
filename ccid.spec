@@ -1,7 +1,7 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
 Version:	1.4.24
-Release:	1
+Release:	2
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
@@ -21,7 +21,7 @@ BuildRequires:	flex
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(libpcsclite)
 BuildRequires:	pkgconfig(libusb-1.0)
-Requires(post,postun): pcsc-lite
+Requires(post,postun):	pcsc-lite
 Requires:	pcsc-lite
 
 %description
@@ -34,9 +34,9 @@ driver.
 
 %build
 autoreconf -fis
-%configure2_5x \
-	--enable-twinserial \
-	--enable-udev
+%configure \
+    --enable-twinserial \
+    --enable-udev
 
 %make
 
