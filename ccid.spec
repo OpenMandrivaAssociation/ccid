@@ -1,6 +1,6 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
-Version:	1.4.27
+Version:	1.4.28
 Release:	1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
@@ -27,7 +27,7 @@ This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
-%setup -q 
+%setup -q
 %apply_patches
 
 %build
