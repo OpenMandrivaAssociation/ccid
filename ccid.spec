@@ -1,7 +1,7 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
-Version:	1.4.28
-Release:	3
+Version:	1.4.30
+Release:	1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
@@ -27,8 +27,7 @@ This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 autoreconf -fis
@@ -36,13 +35,13 @@ autoreconf -fis
     --enable-twinserial \
     --enable-udev
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # serial driver is installed separately
-%makeinstall_std -C src install_ccidtwin
+%make_install -C src install_ccidtwin
 
 # conf file should be placed inside reader.conf.d
 mv -f %{buildroot}%{_sysconfdir}/reader.conf.d/libccidtwin %{buildroot}%{_sysconfdir}/reader.conf.d/GemPCTwin-serial.conf
