@@ -29,7 +29,8 @@ This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
-%autosetup -p1 CCID-%{name}-%{version}
+%setup -qn CCID-%{name}-%{version}
+%autopatch -p1
 
 %build
 autoreconf -fis
