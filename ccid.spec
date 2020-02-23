@@ -33,7 +33,7 @@ driver.
 %autopatch -p1
 
 %build
-autoreconf -fis
+./bootstrap
 %configure \
     --enable-twinserial \
     --enable-udev
