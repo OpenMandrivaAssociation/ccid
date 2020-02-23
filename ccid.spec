@@ -34,9 +34,7 @@ driver.
 
 %build
 ./bootstrap
-%configure \
-    --enable-twinserial \
-    --enable-udev
+%configure --enable-twinserial
 
 %make_build
 
