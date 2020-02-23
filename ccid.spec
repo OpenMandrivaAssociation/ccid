@@ -15,7 +15,7 @@ Url:		http://pcsclite.alioth.debian.org/
 # svn co svn://svn.debian.org/pcsclite/trunk/Drivers/ccid
 #Source0:	https://alioth.debian.org/download.php/3897/%{name}-%{version}.tar.bz2
 #New source:
-Source0:    https://github.com/LudovicRousseau/CCID/archive/%{name}-%{verson}/CCID-%{name}-%{verson}.tar.gz
+Source0:    https://github.com/LudovicRousseau/CCID/archive/%{name}-%{version}/CCID-%{name}-%{version}.tar.gz
 Patch0:		ccid-libtool_fixes.diff
 
 BuildRequires:	flex
@@ -29,7 +29,7 @@ This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
-%autosetup -p1 CCID-%{name}-%{verson}
+%autosetup -p1 CCID-%{name}-%{version}
 
 %build
 autoreconf -fis
