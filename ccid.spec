@@ -1,19 +1,12 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
-Version:	1.4.30
-Release:	3
+Version:	1.4.31
+Release:	1
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
 Url:		http://pcsclite.alioth.debian.org/
-# ccid svn contains symlinks to files pcsc svn. To create a working
-# source tarball from svn:
-# mkdir -p ccid/Drivers
-# cd ccid
-# svn co svn://svn.debian.org/pcsclite/trunk/PCSC
-# cd Drivers
-# svn co svn://svn.debian.org/pcsclite/trunk/Drivers/ccid
-Source0:	https://alioth.debian.org/download.php/3897/%{name}-%{version}.tar.bz2
+Source0:  https://ccid.apdu.fr/files/%{name}-%{version}.tar.bz2
 Patch0:		ccid-libtool_fixes.diff
 
 BuildRequires:	flex
@@ -27,13 +20,12 @@ This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
-%autosetup -p1
+%setup -qn %{name}-%{version}
+%autopatch -p1
 
 %build
-autoreconf -fis
-%configure \
-    --enable-twinserial \
-    --enable-udev
+./bootstrap
+%configure --enable-twinserial
 
 %make_build
 
@@ -56,7 +48,7 @@ cp -f src/towitoko/README README.towitoko
 rm -f INSTALL
 
 %files
-%doc AUTHORS README COPYING
+%doc AUTHORS COPYING
 %doc readers contrib/Kobil_mIDentity_switch/README_Kobil_mIDentity_switch.txt
 %doc README.towitoko
 %config(noreplace) %{_sysconfdir}/reader.conf.d/*.conf
