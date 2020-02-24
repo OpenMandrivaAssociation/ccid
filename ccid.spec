@@ -48,7 +48,7 @@ cp -f src/towitoko/README README.towitoko
 rm -f INSTALL
 
 %files
-%doc AUTHORS README COPYING
+%doc AUTHORS COPYING
 %doc readers contrib/Kobil_mIDentity_switch/README_Kobil_mIDentity_switch.txt
 %doc README.towitoko
 %config(noreplace) %{_sysconfdir}/reader.conf.d/*.conf
