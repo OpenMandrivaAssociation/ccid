@@ -1,7 +1,7 @@
 Summary:	A generic USB CCID (Chip/Smart Card Interface Devices) driver
 Name:		ccid
 Version:	1.4.34
-Release:	2
+Release:	3
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
@@ -20,8 +20,7 @@ This package provides a generic USB CCID (Chip/Smart Card Interface Devices)
 driver.
 
 %prep
-%setup -qn %{name}-%{version}
-%autopatch -p1
+%autosetup -n %{name}-%{version} -p1
 
 %build
 ./bootstrap
@@ -39,7 +38,7 @@ driver.
 mv -f %{buildroot}%{_sysconfdir}/reader.conf.d/libccidtwin %{buildroot}%{_sysconfdir}/reader.conf.d/GemPCTwin-serial.conf
 
 # udev
-install -m 0644 -D src/92_pcscd_ccid.rules %{buildroot}/lib/udev/rules.d/92_pcscd_ccid.rules
+install -m 0644 -D src/92_pcscd_ccid.rules %{buildroot}%{_udevrulesdir}/92_pcscd_ccid.rules
 
 rm -rf %{buildroot}%{_docdir}/*
 rm -f readers/Makefile*
@@ -52,7 +51,7 @@ rm -f INSTALL
 %doc readers contrib/Kobil_mIDentity_switch/README_Kobil_mIDentity_switch.txt
 %doc README.towitoko
 %config(noreplace) %{_sysconfdir}/reader.conf.d/*.conf
-%config /lib/udev/rules.d/92_pcscd_ccid.rules
+%config %{_udevrulesdir}/92_pcscd_ccid.rules
 %{_libdir}/pcsc/drivers/ifd-ccid.bundle
 %{_libdir}/pcsc/drivers/serial
 #%{_bindir}/RSA_SecurID_getpasswd
