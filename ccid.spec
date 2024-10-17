@@ -5,7 +5,7 @@ Release:	4
 # RSA_SecurID_getpasswd and Kobil_mIDentity_switch are GPLv2+
 License:	GPLv2+ and LGPLv2+
 Group:		System/Libraries
-Url:		http://pcsclite.alioth.debian.org/
+Url:		https://pcsclite.alioth.debian.org/
 Source0:  https://ccid.apdu.fr/files/%{name}-%{version}.tar.bz2
 Patch0:		ccid-libtool_fixes.diff
 
