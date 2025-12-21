@@ -9,6 +9,11 @@ Url:		https://pcsclite.alioth.debian.org/
 Source0:  https://ccid.apdu.fr/files/%{name}-%{version}.tar.bz2
 Patch0:		ccid-libtool_fixes.diff
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	flex
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(libpcsclite)
